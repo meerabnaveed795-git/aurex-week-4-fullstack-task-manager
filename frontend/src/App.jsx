@@ -15,7 +15,7 @@ function App() {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
-  const API = "http://localhost:5000";
+  const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   async function handleAuth(e) {
     e.preventDefault();
