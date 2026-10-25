@@ -1,0 +1,244 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6fb;
+  color: #20243a;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 12px 18px;
+  background: #5b5ce2;
+  color: white;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #4849c7;
+}
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #e9eaff, #f8f9ff);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 36px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(36, 40, 90, 0.1);
+}
+
+.auth-card h1 {
+  color: #5b5ce2;
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.auth-card h2 {
+  margin-top: 30px;
+}
+
+.auth-card > p {
+  color: #74788b;
+  line-height: 1.5;
+}
+
+.auth-card input,
+.add-task input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #dfe2ed;
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  color: #20243a;
+}
+
+.auth-card input {
+  margin: 8px 0;
+}
+
+.auth-card input:focus,
+.add-task input:focus {
+  border-color: #5b5ce2;
+}
+
+.auth-card > button {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.switch-page {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 24px;
+}
+
+.text-button {
+  background: none;
+  color: #5b5ce2;
+  padding: 0;
+}
+
+.text-button:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.message {
+  padding: 12px;
+  border-radius: 8px;
+  background: #eef0ff;
+  color: #4546aa;
+  overflow-wrap: anywhere;
+}
+
+.dashboard {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px 22px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e2e5ef;
+}
+
+.topbar h1 {
+  color: #5b5ce2;
+  margin: 0;
+}
+
+.logout {
+  background: #292d45;
+}
+
+.welcome {
+  padding: 32px 0 20px;
+}
+
+.welcome h2 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.welcome p,
+.task-item p {
+  color: #777b8f;
+}
+
+.add-task {
+  display: flex;
+  gap: 12px;
+  padding: 18px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(36, 40, 90, 0.05);
+}
+
+.add-task input {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-list {
+  margin-top: 30px;
+}
+
+.task-list h3 {
+  margin-bottom: 16px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 12px;
+  padding: 20px;
+  background: white;
+  border: 1px solid #e8eaf2;
+  border-radius: 12px;
+}
+
+.task-item h4 {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+
+.task-item p {
+  margin: 6px 0;
+}
+
+.task-item small {
+  color: #777b8f;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.task-actions button {
+  padding: 10px 12px;
+}
+
+.task-actions .delete {
+  background: #d9485f;
+}
+
+.task-actions .delete:hover {
+  background: #b83249;
+}
+
+@media (max-width: 600px) {
+  .auth-card {
+    padding: 26px 20px;
+  }
+
+  .dashboard {
+    padding: 18px 14px;
+  }
+
+  .welcome h2 {
+    font-size: 24px;
+  }
+
+  .add-task,
+  .task-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-task button {
+    width: 100%;
+  }
+}
