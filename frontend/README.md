@@ -1,16 +1,97 @@
-# React + Vite
+# TaskFlow - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Overview
+TaskFlow is the React frontend of the AUREX Week 4 Full-Stack Task Management Application. It provides a user-friendly interface for account registration, login, and task management.
 
-Currently, two official plugins are available:
+The frontend communicates with the Node.js and Express backend through REST APIs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+- User registration and login
+- JWT-based authentication
+- Add new tasks
+- View personal tasks
+- Edit task titles
+- Mark tasks as completed or undo completion
+- Delete tasks
+- Filter tasks by All, Pending, and Completed
+- Responsive user interface
+- Success and error messages
 
-## React Compiler
+## Technologies Used
+- React
+- Vite
+- JavaScript
+- CSS
+- Fetch API
+- Browser localStorage for the authentication token
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Project Structure
 
-## Expanding the Oxlint configuration
+```text id="o6c9qw"
+frontend/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Prerequisites
+- Node.js
+- npm
+- The TaskFlow backend running locally
+
+## Installation
+
+From the frontend directory, install the dependencies:
+
+```bash id="ac7w8z"
+npm install
+```
+
+## Run the Application
+
+Start the Vite development server:
+
+```bash id="4ogz9b"
+npm run dev
+```
+
+Open the local URL shown in the terminal, usually:
+
+`http://localhost:5173`
+
+## Backend Connection
+The frontend currently sends API requests to:
+
+`http://localhost:5000`
+
+Make sure the backend is running before testing registration, login, or task operations.
+
+## Authentication
+After successful registration or login, the application stores the returned JWT token in browser localStorage and uses it to access protected task endpoints.
+
+## Task Management
+Authenticated users can:
+- Create tasks
+- View their tasks
+- Edit task titles
+- Mark tasks complete or undo completion
+- Delete tasks
+- Filter tasks by status
+
+## Notes
+- The backend and MongoDB database must be configured correctly.
+- The current API address is intended for local development.
+- For production deployment, configure the frontend to use the deployed backend URL.
+- Never commit private credentials or tokens to GitHub.
+
+## Internship
+**Program:** AUREX Full-Stack Engineering Internship  
+**Assignment:** Week 4 - Full Stack Task Management Application

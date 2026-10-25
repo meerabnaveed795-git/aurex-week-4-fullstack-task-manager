@@ -1,103 +1,114 @@
-# AUREX Full-Stack Internship - Month 2, Week 3
+# TaskFlow - Backend API
 
-## Intern Information
-**Name:** Meerab Naveed
-**Domain:** Full-Stack Web Development
-**Week:** Month 2 - Week 3 (Node.js, Express.js, MongoDB and CRUD)
+## Overview
+This is the backend of the AUREX Week 4 Full-Stack Task Management Application. It provides REST APIs for user authentication and task management using Node.js, Express.js, and MongoDB.
 
-## Project: Task Manager REST API
-A backend REST API built with Node.js, Express.js and MongoDB (Mongoose). It lets a client create,
-read, update and delete tasks. Data is stored in MongoDB Atlas, so it is still there after the server restarts.
+## Features
+- User registration and login
+- Password hashing using bcryptjs
+- JWT-based authentication
+- Protected API routes
+- Create, retrieve, update, and delete tasks
+- User-specific task access
+- Centralized error handling
+- MongoDB database integration
 
-## Tech Stack
-- Node.js and npm
-- Express.js (server, routes, middleware)
-- MongoDB Atlas and Mongoose (database, schema, model)
-- dotenv (environment variables), cors, nodemon (development)
-- Postman (API testing)
+## Technologies
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JSON Web Tokens (JWT)
+- bcryptjs
 
-## Folder Structure
-```
+## Project Structure
+
+```text
 backend/
+├── postman/
+│   └── AUREX-Week3-Task-API.postman_collection.json
 ├── src/
-│   ├── config/db.js              # MongoDB connection
-│   ├── models/Task.js            # Mongoose schema and model
-│   ├── controllers/taskController.js   # CRUD logic
-│   ├── routes/taskRoutes.js      # URLs -> controller functions
-│   ├── middleware/errorHandler.js      # 404 and error handling
-│   └── server.js                 # app entry point
-├── postman/                      # Postman collection
-├── .env                          #  environment variables (no secrets)
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   └── taskController.js
+│   ├── middleware/
+│   │   ├── authMiddleware.js
+│   │   └── errorHandler.js
+│   ├── models/
+│   │   ├── Task.js
+│   │   └── User.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   └── taskRoutes.js
+│   └── server.js
+├── .env
 ├── .gitignore
 ├── package.json
 └── README.md
 ```
 
-## Request Flow
-Client -> Route -> Controller -> Model (MongoDB) -> Response -> Client
+**Security note:** The actual `.env` file contains private configuration and must not be uploaded to GitHub.
 
-## Setup and Run
-1. Install Node.js (LTS version).
-2. Install the packages: `npm install`
-3. Copy `.env.example` to `.env` and fill in your own values:
-   ```
-   PORT=5000
-   MONGODB_URI=<your MongoDB Atlas connection string>
-   ```
-4. Start the server: `npm run dev` (or `npm start`)
-5. Open http://localhost:5000 - you should see `{"message":"Task API is running"}`
+## Installation
 
-`.env` is listed in `.gitignore`, so passwords are never pushed to GitHub.
+Run these commands from the backend directory:
 
-## Database Model (Task)
-| Field | Type | Rules |
-|-------|------|-------|
-| title | String | required, 3-100 characters |
-| description | String | optional, max 500 characters |
-| completed | Boolean | default false |
-| priority | String | low, medium or high (default medium) |
-| createdAt / updatedAt | Date | added automatically |
+```bash
+npm install
+```
+
+Create a `.env` file in the backend directory with your own values:
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+Do not share your real database connection string or JWT secret.
+
+## Run the Server
+
+Use the start command defined in `package.json`. If the project uses the `start` script, run:
+
+```bash
+npm start
+```
+
+The backend is configured to run locally at:
+
+`http://localhost:5000`
 
 ## API Endpoints
-Base URL: `http://localhost:5000/api/tasks`
 
-| Operation | Method | Endpoint | Success | Errors |
-|-----------|--------|----------|---------|--------|
-| Create task | POST | `/api/tasks` | 201 Created | 400 validation failed |
-| Get all tasks | GET | `/api/tasks` (optional `?completed=true`) | 200 OK | - |
-| Get one task | GET | `/api/tasks/:id` | 200 OK | 400 invalid id, 404 not found |
-| Update task | PUT | `/api/tasks/:id` | 200 OK | 400 invalid id or data, 404 not found |
-| Delete task | DELETE | `/api/tasks/:id` | 200 OK | 400 invalid id, 404 not found |
+### Authentication
 
-### Example: create a task
-Request body:
-```json
-{ "title": "Learn Express", "description": "Finish the Week 3 API", "priority": "high" }
-```
-Response (201):
-```json
-{
-  "_id": "665f1c2e9b1d8a0012a4c111",
-  "title": "Learn Express",
-  "description": "Finish the Week 3 API",
-  "completed": false,
-  "priority": "high",
-  "createdAt": "2026-10-17T10:00:00.000Z",
-  "updatedAt": "2026-10-17T10:00:00.000Z"
-}
-```
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Create a user account |
+| POST | `/api/auth/login` | Authenticate a user |
+| GET | `/api/auth/me` | Retrieve authenticated user details |
 
-### Example: validation error (400)
-```json
-{ "message": "Validation failed", "errors": ["Title is required"] }
-```
+### Tasks
 
-## HTTP Status Codes Used
-200 OK, 201 Created, 400 Bad Request, 404 Not Found, 500 Internal Server Error
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/tasks` | Retrieve the current user's tasks |
+| POST | `/api/tasks` | Create a task |
+| PUT | `/api/tasks/:id` | Update a task |
+| DELETE | `/api/tasks/:id` | Delete a task |
+
+Protected endpoints require a valid JWT in the Authorization header:
+
+`Authorization: Bearer YOUR_TOKEN`
 
 ## Testing
-All endpoints were tested in Postman, including failed requests (missing title, invalid id, id that does not exist).
-The Postman collection is in the `postman` folder.
+The `postman/` directory contains a Postman collection for API testing. Register or log in to obtain a valid token before testing protected task endpoints.
 
-## Learning Summary
-<write 4-5 lines in your own words: what Node, Express, MongoDB and Mongoose are, what you found difficult>
+## Security
+- Passwords are hashed before storage.
+- JWT authentication protects private endpoints.
+- Users can access only their own tasks.
+- Secrets must be stored in environment variables.
